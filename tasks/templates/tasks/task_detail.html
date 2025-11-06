@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Tarea</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F9FAFB;
+            font-family: 'Inter', sans-serif;
+            color: #2D3748;
+        }
+        .main-container {
+            max-width: 768px; /* Slightly smaller max-width for detail page */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1.card-title {
+            font-size: 2rem; /* Slightly smaller than main list h1 */
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: #2D3748;
+        }
+        h5.card-subtitle {
+            font-weight: 600;
+            color: #4A5568;
+            margin-bottom: 8px;
+        }
+        p.card-text {
+            color: #718096;
+            font-size: 1rem;
+        }
+        .card {
+            border: none;
+            background-color: #FFFFFF;
+            padding: 30px; /* More padding for detail card */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        /* Custom Button Styles (re-used from task_list.html) */
+        .btn-action {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #FFFFFF;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-view {
+            background-color: #63B3ED;
+        }
+        .btn-view:hover {
+            background-color: #4299E1;
+        }
+        .btn-edit {
+            background-color: #F6AD55;
+        }
+        .btn-edit:hover {
+            background-color: #ED8936;
+        }
+        .btn-delete {
+            background-color: #F56565;
+        }
+        .btn-delete:hover {
+            background-color: #E53E3E;
+        }
+        .btn-list-back { /* New style for "Volver a la Lista" */
+            background-color: #718096;
+        }
+        .btn-list-back:hover {
+            background-color: #5A677B;
+        }
+        .btn-group-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 30px; /* More space for detail page buttons */
+        }
+        /* Status Tags (re-used from task_list.html) */
+        .badge {
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            text-transform: capitalize;
+        }
+        .badge-warning { /* Pendiente */
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+        .badge-info { /* En Progreso */
+            background-color: #E6FFFA;
+            color: #2C7A7B;
+        }
+        .badge-success { /* Completado */
+            background-color: #DBEAFE;
+            color: #1E40AF;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container mt-5">
+        <div class="card">
+            <div class="card-body text-center">
+                <h1 class="card-title text-center mb-4">Detalle de Tarea: {{ task.titulo }}</h1>
+                <div class="row text-left mb-4"> {# Added mb-4 for spacing below details #}
+                    <div class="col-md-6">
+                        <h5 class="card-subtitle mb-2 text-muted">Descripción:</h5>
+                        <p class="card-text">{{ task.descripcion }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="card-subtitle mb-2 text-muted">Fecha de Creación:</h5>
+                        <p class="card-text">{{ task.fecha_creacion|date:"d M Y H:i" }}</p>
+                    </div>
+                </div>
+                <p class="card-text mt-3">
+                    Estado: 
+                    {% if task.estado == 'pendiente' %}
+                        <span class="badge badge-warning">{{ task.get_estado_display }}</span>
+                    {% elif task.estado == 'en_progreso' %}
+                        <span class="badge badge-info">{{ task.get_estado_display }}</span>
+                    {% else %}
+                        <span class="badge badge-success">{{ task.get_estado_display }}</span>
+                    {% endif %}
+                </p>
+                <div class="btn-group-actions">
+                    <a href="{% url 'task_update' task.pk %}" class="btn-action btn-edit">Editar</a>
+                    <a href="{% url 'task_delete' task.pk %}" class="btn-action btn-delete">Eliminar</a>
+                    <a href="{% url 'task_list' %}" class="btn-action btn-list-back">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body text-center">
+                <h1 class="card-title text-center mb-4">Detalle de Tarea: {{ task.titulo }}</h1>
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        <h5 class="card-subtitle mb-2 text-muted">Descripción:</h5>
+                        <p class="card-text">{{ task.descripcion }}</p>
+                    </div>
+                    <div class="col-md-6 text-left">
+                        <h5 class="card-subtitle mb-2 text-muted">Fecha de Creación:</h5>
+                        <p class="card-text">{{ task.fecha_creacion|date:"d M Y H:i" }}</p>
+                    </div>
+                </div>
+                <p class="card-text mt-3">
+                    Estado: 
+                    {% if task.estado == 'pendiente' %}
+                        <span class="badge badge-warning">{{ task.get_estado_display }}</span>
+                    {% elif task.estado == 'en_progreso' %}
+                        <span class="badge badge-info">{{ task.get_estado_display }}</span>
+                    {% else %}
+                        <span class="badge badge-success">{{ task.get_estado_display }}</span>
+                    {% endif %}
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'task_update' task.pk %}" class="btn btn-primary">Editar</a>
+                    <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger">Eliminar</a>
+                    <a href="{% url 'task_list' %}" class="btn btn-secondary">Volver a la Lista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
