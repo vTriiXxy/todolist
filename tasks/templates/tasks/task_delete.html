@@ -1,37 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Tarea</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .card {
-            border: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'tasks/css/modern-styles.css' %}">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container" style="max-width: 600px;">
         <div class="card">
-            <div class="card-body text-center">
-                <h1 class="card-title mb-4">Eliminar Tarea</h1>
-                <p class="card-text">¿Estás seguro de que quieres eliminar la tarea "{{ task.titulo }}"?</p>
-                <form method="post" class="mt-4">
+            <div style="text-align: center;">
+                <h1 class="section-title">Eliminar Tarea</h1>
+                <p style="font-size: 1.1rem; color: #4B5563;">
+                    ¿Estás seguro de que quieres eliminar la tarea <strong>"{{ task.titulo }}"</strong>?
+                </p>
+                <p style="color: #6B7280;">Esta acción no se puede deshacer.</p>
+                <form method="post">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger mr-2">Eliminar</button>
-                    <a href="{% url 'task_detail' task.pk %}" class="btn btn-secondary">Cancelar</a>
+                    <div class="button-group" style="margin-top: 24px;">
+                        <button type="submit" class="btn btn-danger">Sí, Eliminar</button>
+                        <a href="{% url 'task_list' %}" class="btn btn-cancel">Cancelar</a>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

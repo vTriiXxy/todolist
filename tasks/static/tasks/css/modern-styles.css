@@ -1,0 +1,179 @@
+/* 1. Estilos Globales (El Lienzo) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+    background-color: #F9FAFB; /* Gris suave de fondo */
+    font-family: 'Inter', sans-serif;
+    color: #374151; /* Gris oscuro para texto */
+    margin: 0;
+    padding: 20px;
+}
+
+/* 2. El Componente "Tarjeta" (Contenedor Principal) */
+.card {
+    background-color: #FFFFFF; /* Fondo blanco puro */
+    border: none; /* Sin bordes */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+    padding: 24px; /* Relleno generoso */
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Asegura que las tarjetas en una fila tengan la misma altura */
+}
+
+/* 3. Tipografía (Jerarquía) */
+.main-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.task-title {
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+}
+
+.task-description {
+    flex-grow: 1; /* Empuja los botones hacia abajo */
+    color: #4B5563;
+    font-size: 1rem;
+    margin-bottom: 16px;
+}
+
+/* 4. Elementos de Formulario (¡CRÍTICO!) */
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #718096; /* Gris más claro */
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 12px 14px; /* Relleno interno */
+    border: 1px solid #D1D5DB; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 1rem;
+    color: #374151;
+    background-color: #FFFFFF;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none; /* Quita el resplandor por defecto */
+    border-color: #4F46E5; /* Borde de color de acento */
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2); /* Resplandor suave */
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+/* 5. Botones */
+.btn {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.2s ease;
+    color: #FFFFFF; /* Texto blanco por defecto para la mayoría */
+}
+
+.btn-primary {
+    background-color: #4F46E5; /* Azul/morado */
+}
+.btn-primary:hover {
+    background-color: #4338CA;
+}
+
+.btn-secondary {
+    background-color: #3B82F6; /* Azul claro */
+}
+.btn-secondary:hover {
+    background-color: #2563EB;
+}
+
+.btn-edit {
+    background-color: #F59E0B; /* Naranja */
+}
+.btn-edit:hover {
+    background-color: #D97706;
+}
+
+.btn-danger {
+    background-color: #EF4444; /* Rojo */
+}
+.btn-danger:hover {
+    background-color: #DC2626;
+}
+
+.btn-cancel {
+    background-color: #E5E7EB; /* Gris claro */
+    color: #374151; /* Texto gris oscuro */
+}
+.btn-cancel:hover {
+    background-color: #D1D5DB;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: auto; /* Empuja el grupo de botones al final de la tarjeta */
+    padding-top: 16px;
+}
+
+/* 6. Etiquetas de Estado (Píldoras) */
+.status-tag {
+    padding: 4px 10px;
+    border-radius: 9999px; /* Forma de píldora */
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    text-transform: capitalize;
+}
+
+.status-pending { /* Pendiente */
+    background-color: #FEF3C7; /* Fondo amarillo pálido */
+    color: #92400E; /* Texto amarillo oscuro */
+}
+
+.status-in-progress { /* En Progreso */
+    background-color: #D1FAE5; /* Fondo verde pálido */
+    color: #065F46; /* Texto verde oscuro */
+}
+
+.status-completed { /* Completada */
+    background-color: #DBEAFE; /* Fondo azul pálido */
+    color: #1E40AF; /* Texto azul oscuro */
+}
+
+.status-container {
+    text-align: center;
+    margin-bottom: 16px;
+}
